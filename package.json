@@ -1,0 +1,21 @@
+{
+  "name": "redux-async-await-middleware",
+  "version": "0.0.0",
+  "description": "Redux middleware to enable async/await action creators",
+  "bin": "src/createAsyncAwaitMiddleware.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": ""
+  },
+  "engines": {
+      "node": "^8.6"
+  },
+  "author": "David Beale",
+  "license": "UNLICENCED",
+  "dependencies": {
+
+  },
+  "devDependencies": {
+
+  }
+}
