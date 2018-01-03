@@ -2,20 +2,23 @@ import isPromise from 'is-promise';
 import isObject from 'isobject';
 
 import handler from './handler';
+import defaultCancelAction from './defaultCancelAction';
 
-export default function createAsyncAwaitMiddleware() {
+const defaultOptions = {
+    cancelAction: defaultCancelAction
+};
+
+
+export default function createAsyncAwaitMiddleware(options = defaultOptions) {
     const toCancel = new Set();
+    const { cancelAction } = options;
 
     return store => next => (action) => {
         const { dispatch } = store;
 
-        if (isObject(action) && action.type) {
-            if (action.type.substr(0, 7) === 'CANCEL_') {
-                toCancel.add(action.type.substr(7));
-                return null;
-            }
-
-            return next(action);
+        if (isObject(action) && cancelAction(action)) {
+            toCancel.add(cancelAction(action));
+            return null;
         }
 
         if (isPromise(action)) {
