@@ -1,3 +1,6 @@
+import isCancelled from './isCancelled';
+import relayActions from './relayActions';
+
 
 export default async function handler(action, dispatch, toCancel) {
     if (!action) {
@@ -11,9 +14,9 @@ export default async function handler(action, dispatch, toCancel) {
     const actions = Array.isArray(action) ? action : [action];
 
     if (isCancelled(actions, toCancel)) {
-        actions.forEach(action => toCancel.delete(action.type));
+        actions.forEach(actionItem => toCancel.delete(actionItem.type));
         return actions;
-    } else {
-        return relayActions(dispatch, actions));
     }
+
+    return relayActions(dispatch, actions);
 }

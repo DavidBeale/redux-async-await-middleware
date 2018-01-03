@@ -6,7 +6,7 @@
   "module": "src/createAsyncAwaitMiddleware.js",
   "scripts": {
     "lint": "eslint ./",
-    "test:unit": "mocha --recursive test/*.spec.js",
+    "test:unit": "mocha --recursive test/*.spec.js --compilers js:babel-core/register",
     "test": "npm run lint && npm run test:unit",
     "start": ""
   },
@@ -16,9 +16,14 @@
   "author": "David Beale",
   "license": "UNLICENCED",
   "dependencies": {
-    "is-promise": "^2.1.0"
+    "is-promise": "^2.1.0",
+    "isobject": "^3.0.1"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^8.1.2",
+    "babel-preset-env": "^1.6.1",
     "chai": "^4.1.2",
     "chai-as-promised": "^7.1.1",
     "eslint": "^4.13.1",
