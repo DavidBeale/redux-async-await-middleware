@@ -2,20 +2,28 @@
   "name": "redux-async-await-middleware",
   "version": "0.0.0",
   "description": "Redux middleware to enable async/await action creators",
-  "bin": "src/createAsyncAwaitMiddleware.js",
+  "main": "dist/createAsyncAwaitMiddleware.js",
+  "module": "src/createAsyncAwaitMiddleware.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint ./",
+    "test:unit": "mocha --recursive test/*.spec.js",
+    "test": "npm run lint && npm run test:unit",
     "start": ""
   },
   "engines": {
-      "node": "^8.6"
+    "node": "^8.6"
   },
   "author": "David Beale",
   "license": "UNLICENCED",
   "dependencies": {
-
+    "is-promise": "^2.1.0"
   },
   "devDependencies": {
-
+    "chai": "^4.1.2",
+    "chai-as-promised": "^7.1.1",
+    "eslint": "^4.13.1",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.8.0",
+    "mocha": "^4.0.1"
   }
 }

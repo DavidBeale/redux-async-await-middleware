@@ -1,6 +1,6 @@
 # redux-async-await-middleware [![Build Status](https://travis-ci.org/bealearts/redux-async-await-middleware.png?branch=master)](https://travis-ci.org/bealearts/redux-async-await-middleware) [![npm version](https://badge.fury.io/js/redux-async-await-middleware.svg)](http://badge.fury.io/js/redux-async-await-middleware) [![Dependency Status](https://david-dm.org/bealearts/redux-async-await-middleware.png)](https://david-dm.org/bealearts/redux-async-await-middleware)
 
-Redux middleware to enable async/await action creators
+> Redux middleware to enable async/await action creators
 
 # Motivation
 
@@ -11,7 +11,12 @@ Use async/await to make Redux as elegant to use with async flows as it is with s
 
 ## Include the middleware
 ```js
+import { createStore } from 'redux';
+import createAsyncAwaitMiddleware from 'redux-async-await-middleware';
 
+const store = createStore([
+    createAsyncAwaitMiddleware()
+]);
 ```
 
 ## Basic async action creator
@@ -34,6 +39,10 @@ Use async/await to make Redux as elegant to use with async flows as it is with s
             }
         }
     }
+
+    ...
+
+    dispatch(loadData());
 ```
 
 ## A more complete async action creator
@@ -69,6 +78,10 @@ Use async/await to make Redux as elegant to use with async flows as it is with s
             return createAction(LOAD_DATA)(error);
         }
     }
+
+    ...
+
+    dispatch(loadData());
 ```
 
 ## Use with an in-progress action
@@ -94,6 +107,37 @@ Use async/await to make Redux as elegant to use with async flows as it is with s
             return createAction(LOAD_DATA)(error);
         }
     }
+
+    ...
+
+    dispatch(loadData());
+```
+
+## Cancel an async action
+```js
+    import { createAction } from 'redux-actions';
+
+    const LOAD_DATA = 'LOAD_DATA';
+    const CANCEL_LOAD_DATA = 'CANCEL_LOAD_DATA';
+
+    export async function loadData() {
+        try {
+            const response = await fetch('...');
+            const data = await response.json();
+
+            return createAction(LOAD_DATA)(data);
+        } catch (error) {
+            return createAction(LOAD_DATA)(error);
+        }
+    }
+
+    ...
+
+    dispatch(loadData());
+
+    ...
+
+    dispatch(createAction(CANCEL_LOAD_DATA));
 ```
 
 

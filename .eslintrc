@@ -3,7 +3,7 @@
     "env": {
         "browser": true
     },
-    "extends": "airbnb",
+    "extends": "airbnb-base",
     "rules": {
         "indent": ["error", 4],
         "comma-dangle": ["error", "never"],
