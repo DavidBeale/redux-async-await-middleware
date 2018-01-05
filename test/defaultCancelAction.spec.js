@@ -19,6 +19,10 @@ describe('defaultCancelAction', () => {
         expect(defaultCancelAction({
             type: 'namespace/MY_TYPE'
         })).to.equal(false);
+
+        expect(defaultCancelAction({
+            type: 'name/space/MY_TYPE'
+        })).to.equal(false);
     });
 
     it('matches basic cancel types', () => {
@@ -31,5 +35,9 @@ describe('defaultCancelAction', () => {
         expect(defaultCancelAction({
             type: 'namespace/CANCEL_MY_TYPE'
         })).to.equal('namespace/MY_TYPE');
+
+        expect(defaultCancelAction({
+            type: 'name/space/CANCEL_MY_TYPE'
+        })).to.equal('name/space/MY_TYPE');
     });
 });

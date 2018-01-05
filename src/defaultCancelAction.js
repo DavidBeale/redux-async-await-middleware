@@ -4,7 +4,7 @@ export default function defaultCancelAction(action) {
         return false;
     }
 
-    let startPos = action.type.indexOf('/');
+    let startPos = action.type.lastIndexOf('/');
     startPos = startPos === -1 ? 0 : startPos + 1;
 
     if (action.type.substr(startPos, 7) === 'CANCEL_') {
