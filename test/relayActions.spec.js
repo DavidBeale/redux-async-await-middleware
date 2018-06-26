@@ -1,5 +1,5 @@
 import { expect } from 'chai';
 
-describe('relayAction', () => {
+describe('relayActions', () => {
 
 });
