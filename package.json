@@ -18,17 +18,20 @@
     "is-promise": "^2.1.0",
     "isobject": "^3.0.1"
   },
+  "pearDependencies": {
+    "redux": "^3.7.2"
+  },
   "devDependencies": {
     "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.0",
-    "babel-eslint": "^8.2.2",
-    "babel-preset-env": "^1.6.1",
+    "babel-core": "^6.26.3",
+    "babel-eslint": "^8.2.5",
+    "babel-preset-env": "^1.7.0",
     "chai": "^4.1.2",
     "chai-as-promised": "^7.1.1",
-    "eslint": "^4.19.1",
-    "eslint-config-airbnb-base": "^12.1.0",
-    "eslint-plugin-import": "^2.10.0",
-    "mocha": "^4.1.0",
+    "eslint": "^5.0.1",
+    "eslint-config-airbnb-base": "^13.0.0",
+    "eslint-plugin-import": "^2.13.0",
+    "mocha": "^5.2.0",
     "rollup": "^0.61.2",
     "rollup-plugin-babel": "^3.0.5",
     "rollup-plugin-commonjs": "^9.1.3",
