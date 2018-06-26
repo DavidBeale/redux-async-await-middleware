@@ -1,10 +1,5 @@
 {
   "presets": [
-    ["env", {
-        "modules": false,
-        "targets": {
-            "chrome": 60
-        }
-    }]
+    "es2015-rollup"
   ]
 }
