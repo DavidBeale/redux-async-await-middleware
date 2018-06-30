@@ -1,4 +1,4 @@
-# redux-async-await-action-middleware [![Build Status](https://travis-ci.org/bealearts/redux-async-await-middleware.png?branch=master)](https://travis-ci.org/bealearts/redux-async-await-middleware) [![npm version](https://badge.fury.io/js/redux-async-await-middleware.svg)](http://badge.fury.io/js/redux-async-await-middleware) [![Dependency Status](https://david-dm.org/bealearts/redux-async-await-middleware.png)](https://david-dm.org/bealearts/redux-async-await-middleware)
+# redux-async-await-action-middleware [![Build Status](https://travis-ci.org/bealearts/redux-async-await-action-middleware.png?branch=master)](https://travis-ci.org/bealearts/redux-async-await-action-middleware) [![npm version](https://badge.fury.io/js/redux-async-await-action-middleware.svg)](http://badge.fury.io/js/redux-async-await-action-middleware) [![Dependency Status](https://david-dm.org/bealearts/redux-async-await-action-middleware.png)](https://david-dm.org/bealearts/redux-async-await-action-middleware)
 
 > Redux middleware to enable async/await action creators
 
@@ -12,7 +12,7 @@ Use async/await to make Redux as elegant to use with async flows as it is with s
 ## Include the middleware
 ```js
 import { createStore } from 'redux';
-import createAsyncAwaitMiddleware from 'redux-async-await-middleware';
+import createAsyncAwaitMiddleware from 'redux-async-await-action-middleware';
 
 const store = createStore([
     createAsyncAwaitMiddleware()
@@ -143,7 +143,7 @@ dispatch(createAction(CANCEL_LOAD_DATA));
 
 # Install
 ```shell
-npm i redux-async-await-middleware
+npm i redux-async-await-action-middleware
 ```
 
 
