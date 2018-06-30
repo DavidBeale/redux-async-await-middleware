@@ -12,10 +12,10 @@ Use async/await to make Redux as elegant to use with async flows as it is with s
 ## Include the middleware
 ```js
 import { createStore } from 'redux';
-import createAsyncAwaitMiddleware from 'redux-async-await-action-middleware';
+import createAsyncAwaitActionMiddleware from 'redux-async-await-action-middleware';
 
 const store = createStore([
-    createAsyncAwaitMiddleware()
+    createAsyncAwaitActionMiddleware()
 ]);
 ```
 

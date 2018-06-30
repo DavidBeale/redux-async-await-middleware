@@ -6,9 +6,9 @@ import eslint from 'rollup-plugin-eslint';
 const isDev = process.argv.includes('--watch');
 
 export default {
-  input: 'src/createAsyncAwaitMiddleware.mjs',
+  input: 'src/createAsyncAwaitActionMiddleware.mjs',
   output: {
-    file: 'dist/createAsyncAwaitMiddleware.js',
+    file: 'dist/createAsyncAwaitActionMiddleware.js',
     format: 'es',
     sourcemap: isDev
   },
