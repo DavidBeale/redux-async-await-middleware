@@ -1,4 +1,4 @@
-# redux-async-await-middleware [![Build Status](https://travis-ci.org/bealearts/redux-async-await-middleware.png?branch=master)](https://travis-ci.org/bealearts/redux-async-await-middleware) [![npm version](https://badge.fury.io/js/redux-async-await-middleware.svg)](http://badge.fury.io/js/redux-async-await-middleware) [![Dependency Status](https://david-dm.org/bealearts/redux-async-await-middleware.png)](https://david-dm.org/bealearts/redux-async-await-middleware)
+# redux-async-await-action-middleware [![Build Status](https://travis-ci.org/bealearts/redux-async-await-middleware.png?branch=master)](https://travis-ci.org/bealearts/redux-async-await-middleware) [![npm version](https://badge.fury.io/js/redux-async-await-middleware.svg)](http://badge.fury.io/js/redux-async-await-middleware) [![Dependency Status](https://david-dm.org/bealearts/redux-async-await-middleware.png)](https://david-dm.org/bealearts/redux-async-await-middleware)
 
 > Redux middleware to enable async/await action creators
 
@@ -21,123 +21,123 @@ const store = createStore([
 
 ## Basic async action creator
 ```js
-    export async function loadData() {
-        try {
-            const response = await fetch('...');
-            const data = await response.json();
+export async function loadData() {
+    try {
+        const response = await fetch('...');
+        const data = await response.json();
 
-            // Action can be any kind, not just FSA
-            return {
-                type: 'LOAD_DATA',
-                payload: data
-            }
-        } catch (error) {
-            return {
-                type: 'LOAD_DATA',
-                payload: error,
-                isError: true
-            }
+        // Action can be any kind, not just FSA
+        return {
+            type: 'LOAD_DATA',
+            payload: data
+        }
+    } catch (error) {
+        return {
+            type: 'LOAD_DATA',
+            payload: error,
+            isError: true
         }
     }
+}
 
-    ...
+...
 
-    dispatch(loadData());
+dispatch(loadData());
 ```
 
 ## A more complete async action creator
 ```js
-    import { createAction } from 'redux-actions';
+import { createAction } from 'redux-actions';
 
-    const LOAD_DATA = 'LOAD_DATA';
-    const NO_DATA_AVAILABLE = 'NO_DATA_AVAILABLE';
-    const AUTH_FAILED = 'AUTH_FAILED';
+const LOAD_DATA = 'LOAD_DATA';
+const NO_DATA_AVAILABLE = 'NO_DATA_AVAILABLE';
+const AUTH_FAILED = 'AUTH_FAILED';
 
-    const errorHandlers = {
-        404: createAction(NO_DATA_AVAILABLE),
-        403: createAction(AUTH_FAILED)
-    }
+const errorHandlers = {
+    404: createAction(NO_DATA_AVAILABLE),
+    403: createAction(AUTH_FAILED)
+}
 
-    export async function loadData() {
-        try {
-            const response = await fetch('...');
+export async function loadData() {
+    try {
+        const response = await fetch('...');
 
-            if (response.statusCode !== 200) {
-                const handler = errorHandlers[response.statusCode];
-                if (handler) {
-                    return handler();
-                }
-
-                throw new Error(`Unexpected Response: ${response.statusCode}:${response.status}`);
+        if (response.statusCode !== 200) {
+            const handler = errorHandlers[response.statusCode];
+            if (handler) {
+                return handler();
             }
 
-            const data = await response.json();
-
-            return createAction(LOAD_DATA)(data);
-        } catch (error) {
-            return createAction(LOAD_DATA)(error);
+            throw new Error(`Unexpected Response: ${response.statusCode}:${response.status}`);
         }
+
+        const data = await response.json();
+
+        return createAction(LOAD_DATA)(data);
+    } catch (error) {
+        return createAction(LOAD_DATA)(error);
     }
+}
 
-    ...
+...
 
-    dispatch(loadData());
+dispatch(loadData());
 ```
 
 ## Use with an in-progress action
 ```js
-    import { createAction } from 'redux-actions';
+import { createAction } from 'redux-actions';
 
-    import store from '../myStore';
+import store from '../myStore';
 
-    const LOAD_DATA = 'LOAD_DATA';
-    const LOAD_DATA_IN_PROGRESS = 'LOAD_DATA_IN_PROGRESS';
+const LOAD_DATA = 'LOAD_DATA';
+const LOAD_DATA_IN_PROGRESS = 'LOAD_DATA_IN_PROGRESS';
 
-    const dispatch = store.dispatch;
+const dispatch = store.dispatch;
 
-    export async function loadData() {
-        try {
-            dispatch(createAction(LOAD_DATA_IN_PROGRESS)());
+export async function loadData() {
+    try {
+        dispatch(createAction(LOAD_DATA_IN_PROGRESS)());
 
-            const response = await fetch('...');
-            const data = await response.json();
+        const response = await fetch('...');
+        const data = await response.json();
 
-            return createAction(LOAD_DATA)(data);
-        } catch (error) {
-            return createAction(LOAD_DATA)(error);
-        }
+        return createAction(LOAD_DATA)(data);
+    } catch (error) {
+        return createAction(LOAD_DATA)(error);
     }
+}
 
-    ...
+...
 
-    dispatch(loadData());
+dispatch(loadData());
 ```
 
 ## Cancel an async action
 ```js
-    import { createAction } from 'redux-actions';
+import { createAction } from 'redux-actions';
 
-    const LOAD_DATA = 'LOAD_DATA';
-    const CANCEL_LOAD_DATA = 'CANCEL_LOAD_DATA';
+const LOAD_DATA = 'LOAD_DATA';
+const CANCEL_LOAD_DATA = 'CANCEL_LOAD_DATA';
 
-    export async function loadData() {
-        try {
-            const response = await fetch('...');
-            const data = await response.json();
+export async function loadData() {
+    try {
+        const response = await fetch('...');
+        const data = await response.json();
 
-            return createAction(LOAD_DATA)(data);
-        } catch (error) {
-            return createAction(LOAD_DATA)(error);
-        }
+        return createAction(LOAD_DATA)(data);
+    } catch (error) {
+        return createAction(LOAD_DATA)(error);
     }
+}
 
-    ...
+...
 
-    dispatch(loadData());
+dispatch(loadData());
 
-    ...
+...
 
-    dispatch(createAction(CANCEL_LOAD_DATA));
+dispatch(createAction(CANCEL_LOAD_DATA));
 ```
 
 

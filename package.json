@@ -1,5 +1,5 @@
 {
-  "name": "redux-async-await-middleware",
+  "name": "redux-async-await-action-middleware",
   "version": "0.0.0",
   "description": "Redux middleware to enable async/await action creators",
   "main": "dist/createAsyncAwaitMiddleware.js",
