@@ -9,7 +9,7 @@ const defaultOptions = {
 };
 
 
-export function createAsyncAwaitMiddleware(options = defaultOptions) { // eslint-disable-line import/prefer-default-export,max-len
+export function createAsyncAwaitActionMiddleware(options = defaultOptions) { // eslint-disable-line import/prefer-default-export,max-len
   const toCancel = new Set();
   const { cancelAction } = options;
 

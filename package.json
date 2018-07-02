@@ -2,7 +2,8 @@
   "name": "redux-async-await-action-middleware",
   "version": "0.0.1",
   "description": "Redux middleware to enable async/await action creators",
-  "main": "dist/createAsyncAwaitMiddleware.js",
+  "main": "dist/createAsyncAwaitActionMiddleware.js",
+  "module": "dist/createAsyncAwaitActionMiddleware.mjs",
   "scripts": {
     "lint": "eslint ./",
     "test:unit": "mocha --recursive test/*.spec.js --compilers js:babel-core/register",
